@@ -16,7 +16,7 @@ In `index.js` (or whatever you have named the server), you must include the line
 This assumes you have called your instance of express.js "app". If not, amend accordingly!
 
 On the appropriate EJS page, on which you wish to fire the payment processor, you must include:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<%- include('`*~path-to-root~*`node_modules/prettypay/views/view.ejs', { root: `*~path-to-root~*` }) %>`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<%- include('`*path-to-root*`node_modules/prettypay/views/view.ejs', { root: `*path-to-root*` }) %>`<br>
 Place this at the bottom of the EJS on the page.<br>
 
 You may then use all the Prettypay functions on any javascript page linked to the EJS page.<br>
@@ -25,10 +25,10 @@ NOTE: The file path must be correct and the `root` property must correctly link 
 <br><br>
 
 ## The File Path and Root Property
-When you include Prettyapy in a file, using `<%- include('`*~path-to-root~*`node_modules/prettypay/views/view.ejs', { root: `*~path-to-root~*` }) %>`:
+When you include Prettyapy in a file, using `<%- include('`*path-to-root*`node_modules/prettypay/views/view.ejs', { root: `*path-to-root*` }) %>`:<br>
 (1) The correct path to the Prettypay view is needed by the file it is placed in. This is dealt with in the first argument.<br>
 (2) The location of that file in the root directory dictates the paths that must be followed in order to access Prettypay's javascript and CSS. This is dealt with using the *root* property.<br>
-Note that *~path-to-root~* will be the same in both arguments.
+Note that *path-to-root* will be the same in both arguments.
 
 For example, let us imagine you wish to use Prettypay in if your project, which is called `my_project_root_dir`.<br>
 You decide to place Prettypay on `pay_page.ejs`.<br>
