@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/prettypay/styles/stylesheet.css">
+</head>
+<body>
+
+    <h2 class='centredText'>Prettypay transaction data report page</h2>
+    <h4 class='centredText'>You can view both successful and unsuccessful transaction data on this page.</h4>
+
+    <div id='reportBtnDiv'>
+        <button type='button' class='reportBtnPP' id='transactionsReportPP_btn' onclick='toggleReportVisibility(transactionsReportPP, this.id)'><span>Hide</span> successful transactions</button>
+        &emsp;&emsp;
+        <button type='button' class='reportBtnPP' id='nonTransReportPP_btn' onclick='toggleReportVisibility(nontransReportPP, this.id)'><span>Hide</span> unsuccessful transactions</button>
+    </div>
+
+    <br>
+
+    <div id='transactionsReportPP'>
+        <h3 class='centredText'>Succesful transaction data report</h3>
+        <% dataToReport.forEach(reportObject => { %>
+            <p class='reportItem'>
+                <% const keys = Object.keys(reportObject); %>
+                <% keys.forEach(key => { %>
+                    <% if (key === 'prettypayPostPath') retun; %>
+                    <%= key %>
+                    :&ensp;
+                    <span class='reportObjectTransactionValue'>
+                        <%= reportObject[key] %>
+                    </span>
+                    <br>
+                <% }) %>
+            </p>
+        <% }) %>
+        <br>
+    </div>
+
+    <div id='nontransReportPP'>
+        <h3 class='centredText'>Unsuccesful transaction data report</h3>
+        <% nontransDataToReport.forEach(reportObject => { %>
+            <p class='reportItem'>
+                <% const keys = Object.keys(reportObject); %>
+                <% keys.forEach(key => { %>
+                    <% if (key === 'prettypayPostPath') retun; %>
+                    <%= key %>
+                    :&ensp;
+                    <span class='reportObjectNontransValue'>
+                        <%= reportObject[key] %>
+                    </span>
+                    <br>
+                <% }) %>
+            </p>
+        <% }) %>
+        <br>
+    </div>
+
+    <script>
+        const transactionsReportPP_btn = document.getElementById('transactionsReportPP_btn');
+        const nontransReportPP_btn = document.getElementById('nontransReportPP_btn');
+
+        const transactionsReportPP = document.getElementById('transactionsReportPP');
+        const nontransReportPP = document.getElementById('nontransReportPP');
+
+        function toggleReportVisibility(report, btnId) {
+            report.classList.toggle('invisiblePP');
+            const btn = document.getElementById(btnId);
+            if (report.classList.contains('invisiblePP')) {
+                btn.firstChild.innerText = 'Display';
+            } else {
+                btn.firstChild.innerText = 'Hide';
+            };
+        }
+    </script>
+</body>
+</html>

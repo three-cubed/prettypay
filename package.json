@@ -1,0 +1,15 @@
+{
+  "name": "prettypay",
+  "version": "2.0.0",
+  "description": "payment processor simulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "three-cubed",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.5"
+  }
+}

@@ -1,0 +1,181 @@
+:root {
+    --mainFontSize: calc(0.6vw + 0.6rem);
+}
+
+.input-label-with-field {
+    padding: 4px 0px;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.centredText {
+    text-align: center;
+}
+
+.copyrightText {
+    text-align: center;
+    color: rgb(168, 168, 168);
+    font-size: 10px;
+}
+
+form input {
+    width: 100%;
+    border: solid gray 2px;
+    border-radius: 7%;
+    font-size: var(--mainFontSize);
+    color: rgb(60, 60, 60);
+}
+
+.invisiblePP {
+    transform: scale(0);
+    height: 0px;
+}
+  
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    /* scale(0) makes it invisible */
+    transition: 120ms ease-in-out;
+    border: 3px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2147483647;
+    background-color: white;
+    width: 500px;
+    max-width: 94%;
+    font-family: Arial, Helvetica, sans-serif;
+    /* The following two lines of CSS work together and are specifically to allow */
+    /* scrolling on the mobile phone landscape view. */
+    max-height: 102.5vh;
+    /* This max-height is just big enough to avoid the effect of the modal scrolling within its own borders. */ 
+    overflow-y: auto; 
+    /* This deals with overflow on the y-axis. */
+}
+  
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+    /* scale(1) makes it visible */
+}
+
+.modal-body {
+    font-size: var(--mainFontSize);
+    padding: 10px 25px 10px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-top {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    background-color: yellow;
+}
+
+.modal-top .close-button {
+    cursor: pointer;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #990000;
+    border: 1px solid #990000;
+    border-radius: 50%;
+}
+
+.modal-top .close-button:hover{
+    background-color : #ffcccc;
+}
+
+.modal-top .title {
+    font-size: var(--mainFontSize);
+    font-weight: bold;
+}
+
+#overlay-pp {
+    z-index: 2147483647;
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0);
+    pointer-events: none;
+}
+  
+#overlay-pp.active {
+    opacity: 0.35;
+    pointer-events: all;
+}
+
+#process-transaction-prettypay-btn {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    height: calc(1.6vw + 1.6rem);
+    font-size: var(--mainFontSize);
+    background-color: yellow;
+    border-radius: 7%;
+    color: blue;
+}
+
+#process-transaction-prettypay-btn:active {
+    background-color: rgb(236, 236, 1);
+    border: solid rgb(128, 128, 128) 3px;
+}
+
+.reportItem {
+    border: 2px solid rgb(60, 60, 60);
+    border-radius: 1.5%;
+    margin: 10px;
+    padding: 10px;
+    width: 1000px;
+    max-width: 96vw;
+}
+
+#reportBtnDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.reportBtnPP {
+    min-height: 40px;
+    min-width: calc(90px + 18vw);
+    font-size: 16px;
+}
+
+.reportObjectTransactionValue {
+    color: green;
+}
+
+.reportObjectNontransValue {
+    color: rgb(192, 2, 2);
+}
+
+.text-in-modal {
+    text-align: center;
+}
+
+#transactionsReportPP .reportItem {
+    background-color: rgba(0, 128, 0, 0.01);
+}
+
+#nontransReportPP .reportItem {
+    background-color: rgba(192, 2, 2, 0.02);
+}
+
+#transactionsReportPP, #nontransReportPP {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* note that justify-content: center; is the wrong thing to use in a flex column */
+}
+
+.warning {
+    color: red;
+}

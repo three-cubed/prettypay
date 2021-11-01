@@ -1,0 +1,104 @@
+<!-- The paths for the style import and script source must be in relation to the file in which this view is placed. -->
+
+<% let CSSpath = `'${root}node_modules/prettypay/styles/stylesheet.css'` %>
+<% let JSpath = `'${root}node_modules/prettypay/javascripts/script.js'` %>
+
+<style type="text/css">
+    @import url(<%- CSSpath %>);
+</style>
+
+<script defer src=
+    <%- JSpath %>
+>
+</script>
+
+<h1 class='invisiblePP'>
+    IF YOU CAN SEE THIS TEXT... the route for the CSS and JS on prettypay/views/view needs to be amended,
+    to fit your root directory's structure.
+    Please amend the root property on the page on which you included Prettypay.
+    See README.md in the Prettypay directory for more information.
+</h1>
+
+<div id="overlay-pp"></div>
+
+<div class="modal" id="payment-modal">
+    <%- include ('./partials/modal-top.ejs') %>
+    <div class="modal-body">
+        <br>
+        <span class="text-in-modal">This is fake, but data will be stored.<br>Please do not enter real data or card details.</span>
+        <br>
+        <form id='payment-form' onsubmit='event.preventDefault(); processPayment();'>
+        <!-- Do not forget event.preventDefault() or the page will reload! -->
+            <div class='input-label-with-field'>
+                <label for="payment-contact-name">Contact name:</label>
+                <input type="text" id="payment-contact-name" name="paymentContactName" placeholder='Mr A Smith'
+                required pattern="^[A-Za-z].+">
+            </div>
+            <div class='input-label-with-field'>
+                <label for="payment-contact-address">Address:</label>
+                <input type="text" id="payment-contact-postal-address" name="paymentContactEmail" placeholder='10 High Road, Brighton, BN1, 1AA'
+                required pattern=".{8,}">
+            </div>
+            <div class='input-label-with-field'>
+                <label for="payment-contact-email">Email:</label>
+                <input type="text" id="payment-contact-email" name="paymentContactEmail" placeholder='asmi@email.com' 
+                type="email" required>
+            </div>
+            <br>
+            <div class='input-label-with-field'>
+                <label for="payment-card-name">Name on card:</label>
+                <input type="text" id="payment-card-name" name="paymentCardName" placeholder='MR A SMITH'
+                required pattern="[A-Za-z]+.+[A-Za-z]+.+[A-Za-z]+[\w ]+">
+            </div>
+            <div class='input-label-with-field'>
+                <label for="payment-card-number">Card number:</label>
+                <input type="text" id="payment-card-number" name="PaymentCardNumber" placeholder='xxxx xxxx xxxx xxxx'
+                    required pattern="\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}"><br> 
+            </div>
+            <div class='input-label-with-field'>
+                <label for="payment-card-expiry">Card expiry date:</label>
+                <input type="text" id="payment-card-expiry" name="paymentCardExpiry" placeholder='mm/yy'
+                    required pattern="\d{2}/\d{2}">
+            </div>
+            <div class='input-label-with-field'>
+                <label for="payment-card-sec-code">Card security code:</label>
+                <input type="text" id="payment-card-sec-code" name="paymentCardSecCode" placeholder='xxx'
+                    required pattern="\d{3}"
+                >
+            </div>
+            <br>
+            <div class="text-in-modal">
+                <strong>
+                    Total payment amount: <span id='currencyOnModal'></span>&nbsp;<span id='totalOnModal'></span>
+                </strong>
+            </div>
+            <br>
+            <input type='submit' id='process-transaction-prettypay-btn' value='Confirm & Pay Now!'><br>
+            <!-- Amazon uses Buy Now, ebay uses Confirm and Pay -->
+            <br>
+            </form>
+            <%- include ('./partials/copyright-fragment.ejs') %>
+    </div>
+</div>
+
+<div class="modal" id="transaction-aborted-modal">
+    <%- include ('./partials/modal-top.ejs') %>
+    <div class="modal-body">
+        <br>
+        <strong class='warning'>⚠️&emsp;The transaction has been aborted.</strong>
+        <span id='transaction-aborted-optional-message-span'></span>
+        <br>
+        <%- include ('./partials/copyright-fragment.ejs') %>
+    </div>
+</div>
+
+<div class="modal" id="transaction-successful-modal">
+    <%- include ('./partials/modal-top.ejs') %>
+    <div class="modal-body">
+        <br>
+        <strong>The transaction was sucessful.</strong>
+        <span id='transaction-successful-optional-message-span'></span>
+        <br>
+        <%- include ('./partials/copyright-fragment.ejs') %>
+    </div>
+</div>
