@@ -6,14 +6,14 @@ Prettypay is a web development tool. It is a moderately simple simulated payment
 
 ## To use
 
-First, remember that Prettypay is designed for use with EJS. The page in which you wish to use Prettypay must be an EJS page.<br>
+First, remember that Prettypay is designed for use with EJS. The page in which you wish to use Prettypay must be an EJS page.
 (This would mean the root/parent directory has NPM initialised and has the EJS node package installed.)<br>
 
 In `index.js` (or whatever you have named the server), you must include the lines:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`const prettypay = require('prettypay');`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`app.use(prettypay);`<br>
 
-This assumes you have called your instance of express.js "app". If not, amend accordingly!
+This assumes you have called your instance of express.js "app". If not, amend accordingly!<br>
 
 On the appropriate EJS page, on which you wish to fire the payment processor, you must include:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<%- include('`*path-to-root*`node_modules/prettypay/views/view.ejs', { root: `*path-to-root*` }) %>`<br>
