@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "three-cubed",
-  "license": "ISC",
+  "license": "Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)",
   "dependencies": {
     "express": "^4.17.1",
     "node-fetch": "^2.6.5"

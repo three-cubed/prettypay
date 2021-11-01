@@ -1,5 +1,4 @@
 # Prettypay
-### Version 2.0.0
 <br>
 Prettypay is a web development tool. It is a moderately simple simulated payment processing system used with javascript and EJS pages. It is designed to be included within the root/parent directory of a project.<br>
 <br>
