@@ -1,6 +1,6 @@
 {
   "name": "prettypay",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "payment processor simulation",
   "main": "index.js",
   "scripts": {
