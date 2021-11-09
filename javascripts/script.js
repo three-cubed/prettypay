@@ -7,8 +7,8 @@ const paymentFormPP = document.getElementById('payment-form');
 const paymentCardExpiryPP = document.getElementById('payment-card-expiry');
 const currencyOnModalPP = document.getElementById('currencyOnModal');
 const totalOnModalPP = document.getElementById('totalOnModal');
-const abortTransactiOnModalPP = document.getElementById('transaction-aborted-modal');
-const abortTransactionOptionalMessageSpanPP = document.getElementById('transaction-aborted-optional-message-span');
+const refuseTransactiOnModalPP = document.getElementById('transaction-refused-modal');
+const refuseTransactionOptionalMessageSpanPP = document.getElementById('transaction-refused-optional-message-span');
 const successfulTransactionModalPP = document.getElementById('transaction-successful-modal');
 const successfulTransactionOptionalMessageSpanPP = document.getElementById('transaction-successful-optional-message-span');
 
@@ -37,7 +37,7 @@ const Prettypay = {
         closeAnyModals();
         paymentFormPP.reset();
         if (amount <= 0) {
-            Prettypay.abort('Error: The total charged is zero or less.');
+            Prettypay.refuse('Error: The total charged is zero or less.');
         } else {
             if (askAddress === true) {
                 contactPostalAddressFieldPP.parentElement.classList.remove('invisiblePP');
@@ -61,15 +61,15 @@ const Prettypay = {
             preprocessPayment(amount, currency);
         }
     },
-    abort: function (message = '') {
+    refuse: function (message = '') {
         closeAnyModals();
-        // console.log(`abort: message: ${message}`);
+        // console.log(`refuse: message: ${message}`);
         if (message !== '') {
-            abortTransactionOptionalMessageSpanPP.innerHTML = `<span id='transaction-aborted-optional-message-span'><br>${message}<br></span>`;
+            refuseTransactionOptionalMessageSpanPP.innerHTML = `<span id='transaction-refused-optional-message-span'><br>${message}<br></span>`;
         } else {
-            abortTransactionOptionalMessageSpanPP.innerHTML = "<span id='transaction-aborted-optional-message-span'></span>";
+            refuseTransactionOptionalMessageSpanPP.innerHTML = "<span id='transaction-refused-optional-message-span'></span>";
         }
-        abortTransactiOnModalPP.classList.add('active');
+        refuseTransactiOnModalPP.classList.add('active');
         overlayPP.classList.add('active');
     },
     approved: function (message = '') {
@@ -97,6 +97,11 @@ const Prettypay = {
         return JSON;
     }
 };
+
+// Maintenaning previous abort() version, after Prettypay has been loaded / initialised, to access newer name Prettypay.refuse();
+Prettypay.abort = (message = '') => {
+    Prettypay.refuse(message);
+}
 
 function autofillpaymentFormPP() {
     document.getElementsByClassName('text-in-modal')[0].innerHTML = 'This is the autofilled version, for your convenience.<br>Just click the button!';
@@ -219,7 +224,7 @@ function processPayment() { // This is the function which works on submission of
         console.log(resJSON.devMessage); // ...this being the purpose of the devMessage.
         dataForFollowupFunctionPP = resJSON;
         if (resJSON.successful !== true) {
-            Prettypay.abort(resJSON.customerMessage);
+            Prettypay.refuse(resJSON.customerMessage);
         } else {
             Prettypay.approved(resJSON.customerMessage);
         }

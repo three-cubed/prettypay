@@ -2,21 +2,20 @@
 
 by three-cubed
 
-[🔗 github.com/three-cubed/prettypay](https://github.com/three-cubed/prettypay)
+[🔗 github.com/three-cubed/prettypay](https://github.com/three-cubed/prettypay)&emsp;[🔗 npmjs.com/package/prettypay](https://www.npmjs.com/package/prettypay)
 
-Prettypay is a web development tool. It is a moderately simple simulated payment processing system used with javascript and EJS pages. Prettypay is included on an EJS page, and then Prettypay functions are used on any javascript source for the EJS page.
+Prettypay is a moderately simple-to-use simulated payment processing system used with javascript and EJS pages. Prettypay is included on an EJS page, and then Prettypay functions are used on any javascript source for the EJS page.
 <br><br>
 
-# Table of contents
-&emsp;[Set-up](#set-up)<br>
-&emsp;[The File Path and Root Property](#the-file-path-and-root-property)<br>
-&emsp;[Potential set-up problems](#potential-set-up-problems)<br>
+## Table of contents
+&emsp;[Set-up](#set-up)<br>&emsp;[The File Path and Root Property](#the-file-path-and-root-property)<br>
+&emsp;[Potential Set-up Problems](#potential-set-up-problems)<br>
 &emsp;[Prettypay.open()](#open)<br>
-&emsp;[Prettypay.abort()](#abort)<br>
+&emsp;[Prettypay.refuse()](#refuse)<br>
 &emsp;[Prettypay.setSuccessFunction() & Prettypay.setNotSuccessFunction()](#set-function)<br>
 &emsp;[Prettypay.postTransaction()](#post-transaction)<br>
 &emsp;[Processing](#processing)<br>
-&emsp;[Data report](#data-report)<br>
+&emsp;[Data Report](#data-report)<br>
 &emsp;[Licence & Trademark](#licence)<br>
 &emsp;[Versioning](#versioning)<br>
 <br>
@@ -41,11 +40,11 @@ Place this at the bottom of the EJS on the page.
 
 You may then use all the Prettypay functions. Prettypay functions are used in the javascript for the EJS page.
 
-NOTE: The file path must be correct and the `root` property must correctly link the page on which you are placing Prettypay to the root directory in which Prettypay has been placed. This is discussed in the section below entitled 'The File Path and Root Property'.
+NOTE: The file path and the `root` property must be correct. This is discussed in the section below entitled 'The File Path and Root Property'.
 <br><br>
 
 ## The File Path and Root Property
-When you include Prettypay in a file, using `<%- include('$PATH_TO_ROOT/node_modules/prettypay/views/view.ejs', { root: '$PATH_TO_ROOT/' }) %>`...<br>
+When you include Prettypay in an EJS file, using the `include` function as instructed above...<br>
 
 (1) The correct path to the Prettypay view is needed by the EJS file it is placed in. This is dealt with in the first argument.<br>
 (2) The location of that file in the root directory dictates the paths that must be followed in order to access Prettypay's javascript and CSS. This is dealt with using the *root* property.<br>
@@ -75,7 +74,7 @@ If, for example, the (simpified) structure of your project were:
 
 <br>
 
-## Potential set-up problems
+## Potential Set-up Problems
 
 ### Potential loading order problems
 As is often the case with javascript functions for frontend pages, you will need to avoid invoking Prettypay functions prior to the loading of the page, or else you will get an error such as `Uncaught ReferenceError: Prettypay is not defined`. 
@@ -115,16 +114,17 @@ If you wish to do so, you can, of course, use more than one option at once, for 
 
 <br>
 
-## Prettypay.abort() <a id='abort'></a>
-Prettypay will automatically perform checks (see the section entitles 'Processing') and may abort the transaction. The developer may, however, add their own criteria and invoke `Prettypay.abort()` where they wish, optionally adding a message for the user explaining why the transaction has been aborted. For example:
+## Prettypay.refuse() <a id='refuse'></a>
+Prettypay will automatically perform checks (see the section entitled 'Processing') and may refuse the transaction. The developer may, however, add their own criteria and invoke `Prettypay.refuse()` where they wish, optionally adding a message for the user explaining why the transaction has been refused. For example:
 
     if (amountToCharge < 5) {
-        Prettypay.abort('The transaction is too small. Please purchase more.');
+        Prettypay.refuse('The transaction is too small. Please purchase more.');
     } else {
         Prettypay.open(amountToCharge);
     }
 
-<br>
+NB: Using the previous name for this function, `Prettypay.abort()`, will have an identical effect.
+<br><br>
 
 ## Prettypay.setSuccessFunction() & Prettypay.setNotSuccessFunction() <a id='set-function'></a>
 *Warning: Versions prior to 2.0.3 are deprecated specifically due to a bug with these functions. If you have an earlier version, please update.*
@@ -163,25 +163,25 @@ The user then chooses how to handle this post on their routes page, for example:
 Prettypay applies checks to the fictional transaction. For example:
 - Prettypay checks that the transaction amount is greater than zero.
 - Prettypay checks that the card expiry date is appropriate.
-- Prettypay checks for anomalies indicating that the transaction data has been tampered with on the payment form.
+- Prettypay checks for anomalies indicating that the transaction data has been tampered with on the Prettypay payment form.
 
-Where a check is failed, Prettypay will automatically abort the transaction. The developer may, however, add their own criteria and invoke `Prettypay.abort()` where they wish.
+Where a check is failed, Prettypay will automatically refuse the transaction. The developer may, however, add their own criteria and invoke `Prettypay.refuse()` where they wish.
 <br><br>
 
-## Data report
+## Data Report
 To view your Pretttypay data report, detailing your recorded transactions, go to the URL:
 
-    $ROOT_DIRECTORY_NAME/prettypay/report
+    $ROOT_DIRECTORY_URL/prettypay/report
 
 The page will display the relevant data.
 
 If you wish to re-initialise the transaction data with empty records, you can delete the data within the files in `node_modules/prettypay/records` (but do not delete the files themselves!).
 
-If, for some reason, there is a JSON error in a record file's data, Prettypay will itself re-initialise that file, deleting all previous records.
+If, for some reason, there is a JSON error in a record file's data, Prettypay will itself re-initialise it, deleting all previous records in that file.
 <br><br>
 
 ## Licence & Trademark <a id='licence'></a>
-Prettypay is not really a registered trademark - It's for effect! Nonetheless, check `LICENCE.md` in the Prettypay directory for details of the attribution, non-commercial, no derivative licence (CC BY-NC-ND 4.0).
+Prettypay is not really a registered trademark - The &trade; trademark sign is for effect! Nonetheless, check `LICENCE.md` in the Prettypay directory for details of the attribution, non-commercial, no derivative licence (CC BY-NC-ND 4.0).
 <br><br>
 
 ## Versioning

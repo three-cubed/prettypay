@@ -48,7 +48,7 @@ router.post('/preprocess', function(req, res) {
 })
 
 router.post('/process', async function(req, res) {
-    const abortMessage = 'Fictional purchase aborted by Prettypay backend with status 403 (forbidden)';
+    const refusalMessage = 'Fictional purchase refused by Prettypay backend with status 403 (forbidden)';
     const currency = req.body.currency;
     const amountToProcess = parseFloat(req.body.amountToProcess);
     const uniqueTransactionReference = req.body.uniqueTransactionReference;
@@ -66,17 +66,17 @@ router.post('/process', async function(req, res) {
     };
 
     if (amountToProcess <= 0) {
-        responseObject.devMessage = `${abortMessage}: total charge of ${req.body.bodyamountToProcess} is not greater than zero.`;
+        responseObject.devMessage = `${refusalMessage}: total charge of ${req.body.bodyamountToProcess} is not greater than zero.`;
         responseObject.customerMessage = `The total charge of ${req.body.bodyamountToProcess} is not greater than zero.`;
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
     } else if (isNaN(amountToProcess)) {
-        responseObject.devMessage = `${abortMessage}: ${req.body.bodyamountToProcess} cannot be processed as an amount.`;
+        responseObject.devMessage = `${refusalMessage}: ${req.body.bodyamountToProcess} cannot be processed as an amount.`;
         responseObject.customerMessage = `Error: Prettypay has not received a recognisable amount to process.`;
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
     } else if (checkCardExpiry(req.body.expiryString) !== 'good') {
-        responseObject.devMessage = `${abortMessage}: Expiry received: ${req.body.expiryString}; ${checkCardExpiry(req.body.expiryString)}`;
+        responseObject.devMessage = `${refusalMessage}: Expiry received: ${req.body.expiryString}; ${checkCardExpiry(req.body.expiryString)}`;
         responseObject.customerMessage = `${checkCardExpiry(req.body.expiryString)}`;
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
@@ -87,17 +87,17 @@ router.post('/process', async function(req, res) {
 
     if (matchAttempt === 'discrepancy') {
         const discrepancyMessage = 'There appears to be a discrepancy between amount & currency data received at preprocessing and corresponding data received at processing. You may wish to try again.'
-        responseObject.devMessage = `${abortMessage}: ${discrepancyMessage}`;
+        responseObject.devMessage = `${refusalMessage}: ${discrepancyMessage}`;
         responseObject.customerMessage = `${discrepancyMessage}`;
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
     } else if (matchAttempt === 'idError') {
-        responseObject.devMessage = `${abortMessage}: There does not seem to be a transaction with this unique identity recorded at the backend as having been initiated.`;
+        responseObject.devMessage = `${refusalMessage}: There does not seem to be a transaction with this unique identity recorded at the backend as having been initiated.`;
         responseObject.customerMessage = `There appears to be a problem with the transaction. You may wish to try again.`;
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
     } else if (req.body.currency === '€') {
-        responseObject.devMessage = `${abortMessage}: Euro transactions forbidden.`;
+        responseObject.devMessage = `${refusalMessage}: Euro transactions forbidden.`;
         responseObject.customerMessage = '<p style="text-align: center">Prettypay does not accept euros.<br>🇬🇧&nbsp;God Save the Queen!&nbsp;🇬🇧</p>';
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
