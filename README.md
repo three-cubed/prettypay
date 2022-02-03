@@ -1,10 +1,10 @@
 # Prettypay
 
-by three-cubed
+by Three Cubed
 
 [🔗 github.com/three-cubed/prettypay](https://github.com/three-cubed/prettypay)&emsp;[🔗 npmjs.com/package/prettypay](https://www.npmjs.com/package/prettypay)
 
-Prettypay is a moderately simple-to-use simulated payment processing system used with javascript and EJS pages. Prettypay is included on an EJS page, and then Prettypay functions are used on any javascript source for the EJS page.
+Prettypay is a moderately simple-to-use simulated payment processing system. It is for use with javascript and EJS pages. Prettypay is included on an EJS page, and then Prettypay functions are used on any javascript source for the EJS page.
 <br><br>
 
 ## Table of contents
@@ -22,10 +22,14 @@ Prettypay is a moderately simple-to-use simulated payment processing system used
 
 ## Set-up <a name="set-up"></a>
 
-First, remember that Prettypay is designed for use with EJS. The page in which you wish to use Prettypay must be an EJS page.
+Before you start, remember that Prettypay is designed for use with EJS. The page in which you wish to use Prettypay must be an EJS page.
 (This would mean the root project directory has NPM initialised and has the EJS node package installed.)
 
-In `index.js` (or whatever you have named the server), you must include the lines:
+Install Prettypay into your root directory with the command:
+
+    npm i prettypay
+
+In `index.js` (or whatever you have named the server), include the lines:
 
     const prettypay = require('prettypay');
     app.use(prettypay);
@@ -85,11 +89,11 @@ Such errors are unlikely in practical usage, as Prettypay would be linked to som
 Prettypay will assume that both `index.js` (or whatever you have named the server) and `node_modules` are immediate children of the root directory. While this directory structure is to be expected, if for some reason this is not the case, Prettypay will malfunction.
 <br><br>
 
-## Prettypay.open( *amount* ) <a id='open'></a>
+## Prettypay.open(*amount*) <a id='open'></a>
 This is the basic Prettypay function, and the only one you need to make the payment processor appear and function on your page.
 As an argument, pass a number to Prettypay to charge. 
 
-Prettypay.open() includes various options:
+Prettypay.open() includes various options.
 
 To make the payment form autofill itself for speed of use:
 
@@ -129,7 +133,7 @@ NB: Using the previous name for this function, `Prettypay.abort()`, will have an
 ## Prettypay.setSuccessFunction() & Prettypay.setNotSuccessFunction() <a id='set-function'></a>
 *Warning: Versions prior to 2.0.3 are deprecated specifically due to a bug with these functions. If you have an earlier version, please update.*
 
-These function are performed, respectively, for successful transactions and for unsuccessful transactions that did nonetheless reach the payment form stage.
+These functions are performed, respectively, for successful transactions and for unsuccessful transactions that did nonetheless reach the payment form stage.
 
 Note that both `Prettypay.setSuccessFunction()` and `Prettypay.setNotSuccessFunction()` provide data from the relevant (un)successful transaction as an argument. For example:
 
@@ -153,10 +157,11 @@ You may wish to pay attention to timing this to get the information you want. `P
 
 The user then chooses how to handle this post on their routes page, for example:
 
-    router.post('/data', function(req, res) {
+    router.post('/data', (req, res) => {
         const data = req.body.transaction;
         // Do something with the data provided!
-    }
+    })
+
 <br>
 
 ## Processing
@@ -175,13 +180,13 @@ To view your Pretttypay data report, detailing your recorded transactions, go to
 
 The page will display the relevant data.
 
-If you wish to re-initialise the transaction data with empty records, you can delete the data within the files in `node_modules/prettypay/records` (but do not delete the files themselves!).
+If you wish to re-initialise the transaction data with empty records, you can delete the data within the files in `node_modules/prettypay/records` (but do not delete the files themselves!)
 
 If, for some reason, there is a JSON error in a record file's data, Prettypay will itself re-initialise it, deleting all previous records in that file.
 <br><br>
 
 ## Licence & Trademark <a id='licence'></a>
-Prettypay is not really a registered trademark - The &trade; trademark sign is for effect! Nonetheless, check `LICENCE.md` in the Prettypay directory for details of the attribution, non-commercial, no derivative licence (CC BY-NC-ND 4.0).
+Prettypay is not really a registered trademark - The &trade; trademark sign is for effect! Nonetheless, check `LICENCE.md` in the Prettypay directory for details of the attribution, non-commercial, no derivative licence (CC BY-NC-ND 4.0). In summary, you are free to use Prettypay, as long as there is attribution and you do not use it commercially. Prettypay already provides adequate attribution in the upper and lower parts of the pop-up/modal boxes.
 <br><br>
 
 ## Versioning

@@ -4,12 +4,15 @@
   "description": "payment processor simulation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "three-cubed",
   "license": "CC BY-NC-ND 4.0 (Attribution-NonCommercial-NoDerivatives 4.0 International)",
   "dependencies": {
     "express": "^4.17.1",
     "node-fetch": "^2.6.5"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
   }
 }

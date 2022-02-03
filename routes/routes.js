@@ -4,10 +4,10 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 
 const { 
-    matchPreprocessingData, 
-    recordTransaction, 
-    checkCardExpiry, 
-    generateUUID, 
+    matchPreprocessingData,
+    recordTransaction,
+    checkCardExpiry,
+    generateUUID,
     formatNumberToString,
     preprocessData,
     prepareDataToReport,
