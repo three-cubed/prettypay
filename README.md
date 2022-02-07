@@ -91,7 +91,9 @@ Prettypay will assume that both `index.js` (or whatever you have named the serve
 
 ## Prettypay.open(*amount*) <a id='open'></a>
 This is the basic Prettypay function, and the only one you need to make the payment processor appear and function on your page.
-As an argument, pass a number to Prettypay to charge. 
+As an argument, pass a number to Prettypay to charge:
+
+    Prettypay.open(myExampleAmount)
 
 Prettypay.open() includes various options.
 
@@ -160,7 +162,7 @@ The user then chooses how to handle this post on their routes page, for example:
     router.post('/data', (req, res) => {
         const data = req.body.transaction;
         // Do something with the data provided!
-    })
+    });
 
 <br>
 
