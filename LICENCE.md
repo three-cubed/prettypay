@@ -1,8 +1,5 @@
 ## Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 
-*Note that the licence applies to the Prettypay directory itself.*
-*There are no licence restrictions on other code found elsewhere in the parent directory, which you are free to use, edit, copy, distibute, etc. without attribution or restriction.*
-
 This is a summary of the licence described above, details of which are in the public domain. Note limited waiver of licence derivatives rights as detailed below.
 
 **You are free to share, copy and redistribute the material, under the following terms:**
