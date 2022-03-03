@@ -96,11 +96,6 @@ router.post('/process', async function(req, res) {
         responseObject.customerMessage = `There appears to be a problem with the transaction. You may wish to try again.`;
         handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
         return;
-    } else if (req.body.currency === '€') {
-        responseObject.devMessage = `${refusalMessage}: Euro transactions forbidden.`;
-        responseObject.customerMessage = '<p style="text-align: center">Prettypay does not accept euros.<br>🇬🇧&nbsp;God Save the Queen!&nbsp;🇬🇧</p>';
-        handleRejectedTransaction(res, responseObject, req.body.prettypayPostPath);
-        return;
     } else {
         responseObject.successful = true; // Very important line!
         responseObject.devMessage = `Successful fictional purchase processed by Prettypay backend; total charge of ${amountToProcess}.`;

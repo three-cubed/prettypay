@@ -90,15 +90,15 @@ const Prettypay = {
     },
     setNotSuccessFunction: function (functionSet) {
         doIfNotSuccessfulPP = functionSet;
-    },
-    returnTransaction: async function (reference) {
-        const data = await fetch(`/prettypay/returnTransaction/${reference}`);
-        const JSON = await data.json();
-        return JSON;
     }
+    // returnTransaction: async function (reference) {
+    //     const data = await fetch(`/prettypay/returnTransaction/${reference}`);
+    //     const JSON = await data.json();
+    //     return JSON;
+    // }
 };
 
-// Maintenaning previous abort() version, after Prettypay has been loaded / initialised, to access newer name Prettypay.refuse();
+// Maintaining previous abort() version, after Prettypay has been loaded / initialised, to access newer name Prettypay.refuse();
 Prettypay.abort = (message = '') => {
     Prettypay.refuse(message);
 }

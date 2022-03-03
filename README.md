@@ -23,7 +23,7 @@ Prettypay is a moderately simple-to-use simulated payment processing system. It 
 ## Set-up <a name="set-up"></a>
 
 Before you start, remember that Prettypay is designed for use with EJS. The page in which you wish to use Prettypay must be an EJS page.
-(This would mean the root project directory has NPM initialised and has the EJS node package installed.)
+(This would mean the root project directory has NPM initialised, and has the EJS node package installed.)
 
 Install Prettypay into your root directory with the command:
 
@@ -106,7 +106,7 @@ By default, the payment form requests the customer's postal address and email. I
     Prettypay.open(amount, { askAddress: false })
     Prettypay.open(amount, { askEmail: false })
 
-Prettypay uses £ by default, but accepts all currencies except €. To use a different currency instead of £ (in this example, Japanese ¥):
+Prettypay uses £ by default. To use a different currency instead of £ (in this example, Japanese ¥):
 
     Prettypay.open(amount, { currency:  '¥' })
 
