@@ -133,7 +133,7 @@ NB: Using the previous name for this function, `Prettypay.abort()`, will have an
 <br><br>
 
 ## Prettypay.setSuccessFunction() & Prettypay.setNotSuccessFunction() <a id='set-function'></a>
-*Warning: Versions prior to 2.0.3 are deprecated specifically due to a bug with these functions. If you have an earlier version, please update.*
+*Warning: Versions prior to 2.0.3 are deprecated specifically due to a bug with these functions.*
 
 These functions are performed, respectively, for successful transactions and for unsuccessful transactions that did nonetheless reach the payment form stage.
 
